@@ -46,11 +46,20 @@ dependencies:
   fab_circular_menu_plus: ^0.0.2
   url_launcher: ^6.2.3
   flutter_native_splash: ^2.3.11
-  readmore: ^2.2.0
+  readmore: ^3.0.0
   cached_network_image: ^3.3.1
+  video_player: ^2.8.5
+  path: ^1.8.3
+  youtube_player_flutter: ^9.0.0
+  visibility_detector: ^0.4.0+2
+  intl: any
+  
+  
 
 dev_dependencies:
   flutter_test:
+    sdk: flutter
+  flutter_localizations:
     sdk: flutter
 
 flutter_native_splash:
@@ -63,6 +72,7 @@ flutter_native_splash:
 
 # The following section is specific to Flutter packages.
 flutter:
+  generate: true
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

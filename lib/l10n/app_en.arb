@@ -1,0 +1,25 @@
+{
+    "home":"Home",
+    "search":"Search",
+    "about":"Abouts"  ,
+    "profile":"Profile",
+    "email":"Email",
+    "profilepage":"Profile Page",
+    "bookpage":"Book Page",
+    "aboutpage":"About Page",
+    "homepage":"Home Page",
+    "morevideos":"More Videos",
+    "morephotos":"More Photos",
+    "settings":"Settings",
+    "firstnamehint":"Enter Your First Name",
+    "lastnamehint":"Enter Your Last Name",
+    "emailhint":"Enter Your Email",
+    "save":"Save",
+    "cancel":"Cancel",
+    "logout":"LogOut",
+    "enquiry":"Enquiry",
+    "donations":"Donations",
+   "courses":"Courses",
+   "branches":"Branches"
+    
+}

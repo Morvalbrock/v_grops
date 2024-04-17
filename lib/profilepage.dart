@@ -1,13 +1,16 @@
 import 'dart:convert';
 // import 'dart:io';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
+import 'package:v_group/classes/language.dart';
+import 'package:v_group/classes/language_constants.dart';
 import 'package:v_group/costoms.dart';
+import 'package:v_group/main.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -24,6 +27,8 @@ class _ProfilePageState extends State<ProfilePage> {
   String email = '';
   String profile_url = '';
   String authToken = '';
+  // late String refreshToken = '';
+  // late DateTime tokenExpiry = DateTime.now();
   late bool isLoading = false;
   TextEditingController _firstnameController = TextEditingController();
   TextEditingController _lastnameController = TextEditingController();
@@ -58,9 +63,8 @@ class _ProfilePageState extends State<ProfilePage> {
   Future<void> uploadImageToApi(String imagePath) async {
     try {
       var request = http.MultipartRequest(
-        'POST',
-        Uri.parse(
-            'https://atomsinnerwears.com/atomsinnerwears/api/update-profile'),
+        'PATCH',
+        Uri.parse('https://vgroups-api.pharma-sources.com/api/user/'),
         // headers: {
         //   'Authorization': 'Bearer $authToken',
         // },
@@ -69,7 +73,7 @@ class _ProfilePageState extends State<ProfilePage> {
       //header writing another way
       request.headers['Authorization'] = 'Bearer $authToken';
       request.files.add(
-        await http.MultipartFile.fromPath('profile_image', imagePath),
+        await http.MultipartFile.fromPath('profile_pic', imagePath),
       );
 
       var response = await request.send();
@@ -92,7 +96,7 @@ class _ProfilePageState extends State<ProfilePage> {
     });
     try {
       final response = await http.get(
-        Uri.parse('http://vgroups-api.pharma-sources.com/api/user/'),
+        Uri.parse('https://vgroups-api.pharma-sources.com/api/user/'),
         headers: {
           'Authorization': 'Bearer $authToken',
         },
@@ -102,7 +106,7 @@ class _ProfilePageState extends State<ProfilePage> {
         // Parse the response body
         Map<String, dynamic> data = json.decode(response.body);
         print('Parsed Data: $data');
-        print(data['first_name']);
+        print(data['profile_pic']);
         Future.delayed(const Duration(seconds: 2), () {
           setState(() {
             // Access the user information correctly
@@ -141,12 +145,12 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
         ),
-        title: const Text(
-          'Profile Page',
+        title: Text(
+          translation(context).profilepage,
           style: TextStyle(color: Colors.white),
         ),
       ),
-      drawer: CustomDrawer(context),
+      drawer: CustomDrawer(context, firstname, profile_url),
       bottomNavigationBar: BottomNavBar(context, 3),
       body: Stack(
         children: [
@@ -224,8 +228,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             const SizedBox(
                               width: 20,
                             ),
-                            const Icon(Icons.person_2_outlined,
-                                color: Colors.black),
+                            Icon(Icons.person_outlined, color: Colors.black),
                             const SizedBox(
                               width: 20,
                             ),
@@ -248,10 +251,15 @@ class _ProfilePageState extends State<ProfilePage> {
                                 // });
 
                                 bottomsheetname(
-                                    _firstnameController,
-                                    _lastnameController,
-                                    'Enter Your First Name',
-                                    'Enter Your last Name');
+                                  _firstnameController,
+                                  _lastnameController,
+                                  AppLocalizations.of(context)!.firstnamehint,
+                                  AppLocalizations.of(context)!.lastnamehint,
+                                );
+                                setState(() {
+                                  _firstnameController.text = firstname;
+                                  _lastnameController.text = lastname;
+                                });
                               },
                               icon: Icon(
                                 Icons.edit,
@@ -303,8 +311,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             Spacer(),
                             IconButton(
                               onPressed: () {
-                                bottomsheet(
-                                    _emailController, 'Enter your email');
+                                bottomsheet(_emailController,
+                                    translation(context).emailhint);
                                 setState(() {
                                   _emailController.text = email;
                                 });
@@ -338,7 +346,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             )
                           ],
                         ),
-                        child: const Row(
+                        child: Row(
                           children: [
                             SizedBox(
                               width: 20,
@@ -347,14 +355,46 @@ class _ProfilePageState extends State<ProfilePage> {
                             SizedBox(
                               width: 20,
                             ),
-                            Text(
-                              'Languages',
-                              style: TextStyle(
-                                color: Color(0xFF4D4D4D),
-                                fontSize: 15,
-                                fontFamily: 'Baloo Chettan 2',
-                                fontWeight: FontWeight.w400,
-                                height: 0,
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: DropdownButton<Language>(
+                                underline: const SizedBox(),
+                                hint: Text(
+                                  'Languages',
+                                  style: TextStyle(
+                                    color: Color(0xFF4D4D4D),
+                                    fontSize: 15,
+                                    fontFamily: 'Baloo Chettan 2',
+                                    fontWeight: FontWeight.w400,
+                                    height: 0,
+                                  ),
+                                ),
+                                onChanged: (Language? language) async {
+                                  if (language != null) {
+                                    Locale _locale =
+                                        await setLocale(language.languageCode);
+                                    MyApp.setLocale(context, _locale);
+                                  }
+                                },
+                                items: Language.languageList()
+                                    .map<DropdownMenuItem<Language>>(
+                                      (e) => DropdownMenuItem<Language>(
+                                        value: e,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: <Widget>[
+                                            Text(
+                                              e.flag,
+                                              style:
+                                                  const TextStyle(fontSize: 30),
+                                            ),
+                                            Text(e.name)
+                                          ],
+                                        ),
+                                      ),
+                                    )
+                                    .toList(),
                               ),
                             ),
                           ],
@@ -381,7 +421,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             )
                           ],
                         ),
-                        child: const Row(
+                        child: Row(
                           children: [
                             SizedBox(
                               width: 20,
@@ -391,7 +431,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               width: 20,
                             ),
                             Text(
-                              'Setting',
+                              AppLocalizations.of(context)!.settings,
                               style: TextStyle(
                                 color: Color(0xFF4D4D4D),
                                 fontSize: 15,
@@ -419,22 +459,22 @@ class _ProfilePageState extends State<ProfilePage> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: SizedBox(
-                          width: MediaQuery.of(context).size.height * 0.15,
+                          width: MediaQuery.of(context).size.height * 0.18,
                           height: MediaQuery.of(context).size.height * 0.05,
                           child: ElevatedButton(
                             onPressed: () {
                               Navigator.of(context).pushNamed("/");
                             },
                             style: ElevatedButton.styleFrom(
-                              primary: Colors.transparent,
+                              backgroundColor: Colors.transparent,
                               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                             ).merge(
                               ButtonStyle(
                                 elevation: MaterialStateProperty.all(0),
                               ),
                             ),
-                            child: const Text(
-                              'Log Out',
+                            child: Text(
+                              AppLocalizations.of(context)!.logout,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 14,
@@ -460,7 +500,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Future<void> updatenamedata() async {
-    final uri = Uri.parse('http://vgroups-api.pharma-sources.com/api/user/');
+    final uri = Uri.parse('https://vgroups-api.pharma-sources.com/api/user/');
     try {
       final response = await http.patch(
         uri,
@@ -472,7 +512,7 @@ class _ProfilePageState extends State<ProfilePage> {
         body: json.encode({
           'first_name': _firstnameController.text,
           'last_name': _lastnameController.text,
-          'email': _emailController.text,
+          // 'email': _emailController.text,
           // 'password': password,
         }),
       );
@@ -522,7 +562,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Future<void> updateemaildata() async {
-    final uri = Uri.parse('http://vgroups-api.pharma-sources.com/api/user/');
+    final uri = Uri.parse('https://vgroups-api.pharma-sources.com/api/user/');
     try {
       final response = await http.patch(
         uri,
@@ -608,7 +648,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     Navigator.pop(context);
                   },
                   child: Text(
-                    'Cancel',
+                    AppLocalizations.of(context)!.cancel,
                     style: TextStyle(
                       color: HexColor('025CAF'),
                     ),
@@ -619,7 +659,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     updateemaildata();
                   },
                   child: Text(
-                    'Save',
+                    AppLocalizations.of(context)!.save,
                     style: TextStyle(
                       color: HexColor('025CAF'),
                     ),
@@ -668,7 +708,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     Navigator.pop(context);
                   },
                   child: Text(
-                    'Cancel',
+                    AppLocalizations.of(context)!.cancel,
                     style: TextStyle(
                       color: HexColor('025CAF'),
                     ),
@@ -679,7 +719,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     updatenamedata();
                   },
                   child: Text(
-                    'Save',
+                    AppLocalizations.of(context)!.save,
                     style: TextStyle(
                       color: HexColor('025CAF'),
                     ),

@@ -14,7 +14,7 @@ class _EditingPageState extends State<EditingPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Editing Page',
+          'Editing Page ',
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
       ),
@@ -28,7 +28,7 @@ class _EditingPageState extends State<EditingPage> {
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(12)),
-                child: const Padding(
+                child: Padding(
                   padding: EdgeInsets.all(14.0),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,7 +65,7 @@ class _EditingPageState extends State<EditingPage> {
                         borderRadius: BorderRadius.circular(16)),
                     height: 280,
                     width: 150,
-                    child: const Padding(
+                    child: Padding(
                       padding: EdgeInsets.all(12.0),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -117,7 +117,7 @@ class _EditingPageState extends State<EditingPage> {
                         borderRadius: BorderRadius.circular(16)),
                     height: 280,
                     width: 150,
-                    child: const Padding(
+                    child: Padding(
                       padding: EdgeInsets.all(12.0),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

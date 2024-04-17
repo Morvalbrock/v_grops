@@ -33,7 +33,7 @@ class _Cources_PageState extends State<Cources_Page> {
     });
     try {
       final response = await http.get(
-        Uri.parse('http://vgroups-api.pharma-sources.com/api/courses/'),
+        Uri.parse('https://vgroups-api.pharma-sources.com/api/courses/'),
         headers: {
           'Authorization': 'Bearer $authToken',
         },

@@ -1,13 +1,15 @@
 import 'dart:convert';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:v_group/bookeditingpage.dart';
 import 'package:v_group/costoms.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:v_group/imagepage.dart';
 import 'package:http/http.dart' as http;
+import 'package:v_group/videospage.dart';
 
 TextEditingController _contentController = TextEditingController();
 
@@ -20,6 +22,72 @@ class AboutsPage extends StatefulWidget {
 
 class _AboutsPageState extends State<AboutsPage> {
   String authToken = '';
+  late List<dynamic> content = [];
+  var content_english;
+  String firstname = '';
+  String lastname = '';
+  String email = '';
+  String profile_url = '';
+
+  // late String refreshToken = '';
+  // late DateTime tokenExpiry = DateTime.now();
+  late bool isLoading = false;
+
+  void _takePicture() async {
+    final imagePicker = ImagePicker();
+
+    final pickedImage = await imagePicker.pickImage(
+      source: ImageSource.gallery,
+    );
+
+    if (pickedImage == null) {
+      return;
+    } else {
+      await fetchUserInfo();
+    }
+
+    // setState(() {
+    //   _selectedImage = File(pickedImage.path);
+    // });
+  }
+
+  Future<void> fetchUserInfo() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      authToken = prefs.getString('token')!;
+    });
+    try {
+      final response = await http.get(
+        Uri.parse('https://vgroups-api.pharma-sources.com/api/user/'),
+        headers: {
+          'Authorization': 'Bearer $authToken',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        // Parse the response body
+        Map<String, dynamic> data = json.decode(response.body);
+        print('Parsed Data: $data');
+        print(data['profile_pic']);
+        Future.delayed(const Duration(seconds: 2), () {
+          setState(() {
+            // Access the user information correctly
+            isLoading = true;
+            firstname = data['first_name'].toString();
+            lastname = data['last_name'].toString();
+            email = data['email'].toString();
+            profile_url = data['profile_pic'].toString();
+          });
+        });
+      } else {
+        // Handle errors
+        print('Failed to load user information');
+      }
+    } catch (e) {
+      // Handle network errors
+      print('Network error: $e');
+    }
+  }
 
   Future<void> fetchaboutInfo() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -28,7 +96,7 @@ class _AboutsPageState extends State<AboutsPage> {
     });
     try {
       final response = await http.get(
-        Uri.parse('http://vgroups-api.pharma-sources.com/api/about/'),
+        Uri.parse('https://vgroups-api.pharma-sources.com/api/about/'),
         headers: {
           'Authorization': 'Bearer $authToken',
         },
@@ -39,9 +107,12 @@ class _AboutsPageState extends State<AboutsPage> {
         List<dynamic> data = json.decode(response.body);
         print('Parsed Data about data: $data');
 
-        Future.delayed(const Duration(seconds: 2), () {
-          setState(() {});
+        // Future.delayed(const Duration(seconds: 2), () {
+        setState(() {
+          content = data;
+          content_english = data.isNotEmpty ? data[0]['content_english'] : null;
         });
+        // });
       } else {
         // Handle errors
         print('Failed to load user information');
@@ -55,13 +126,14 @@ class _AboutsPageState extends State<AboutsPage> {
   @override
   void initState() {
     fetchaboutInfo();
+    fetchUserInfo();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: CustomDrawer(context),
+      drawer: CustomDrawer(context, firstname, profile_url),
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
         flexibleSpace: Container(
@@ -76,8 +148,8 @@ class _AboutsPageState extends State<AboutsPage> {
             ),
           ),
         ),
-        title: const Text(
-          'About Page',
+        title: Text(
+          AppLocalizations.of(context)!.aboutpage,
           style: TextStyle(color: Colors.white, fontSize: 18),
         ),
       ),
@@ -90,7 +162,7 @@ class _AboutsPageState extends State<AboutsPage> {
               child: SizedBox(
                 width: double.infinity,
                 child: Text(
-                  'வல்லரசு கட்சி நிலையான நிர்வாகத்தை வழங்கி, சட்டம் மற்றும் நீதியின் ஆட்சியை நிலைநிறுத்தி, தனிநபர்களின் உரிமைகள் மற்றும் நல்வாழ்வைப் பாதுகாக்கும்.',
+                  content_english.toString(),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0xFF4D4D4D),
@@ -111,7 +183,7 @@ class _AboutsPageState extends State<AboutsPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'More Videos',
+                        AppLocalizations.of(context)!.morevideos,
                         style: TextStyle(
                           color: Color(0xFF257FE0),
                           fontSize: 20,
@@ -121,7 +193,14 @@ class _AboutsPageState extends State<AboutsPage> {
                         ),
                       ),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => VideosPage(),
+                            ),
+                          );
+                        },
                         icon: Icon(
                           Icons.arrow_drop_down,
                           color: Colors.blue,
@@ -155,7 +234,7 @@ class _AboutsPageState extends State<AboutsPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'More Photos',
+                        AppLocalizations.of(context)!.morephotos,
                         style: TextStyle(
                           color: Color(0xFF257FE0),
                           fontSize: 20,

@@ -19,7 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void login(String email, String password, context) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    final uri = Uri.parse('http://vgroups-api.pharma-sources.com/api/token/');
+    final uri = Uri.parse('https://vgroups-api.pharma-sources.com/api/token/');
 
     try {
       http.Response response = await http.post(
@@ -37,8 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
       if (response.statusCode == 200) {
         final token = json.decode(response.body);
         prefs.setString('token', token['access']);
-        // var token = json.decode(response.body);
-        print('Parsed Data: $token');
+        prefs.setString('refresh_token', token['refresh']);
         print(token);
         Fluttertoast.showToast(
           msg: 'Login succssfully....',

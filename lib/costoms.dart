@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:v_group/profilepage.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Widget BottomNavBar(context, index) {
   return Container(
@@ -42,7 +43,7 @@ Widget BottomNavBar(context, index) {
                 Icons.home,
               ),
             ),
-            label: "Home"),
+            label: AppLocalizations.of(context)!.home),
         BottomNavigationBarItem(
             icon: IconButton(
               onPressed: () {
@@ -52,7 +53,7 @@ Widget BottomNavBar(context, index) {
                 Icons.search,
               ),
             ),
-            label: "Search"),
+            label: AppLocalizations.of(context)!.search),
         BottomNavigationBarItem(
             icon: IconButton(
               onPressed: () {
@@ -62,7 +63,7 @@ Widget BottomNavBar(context, index) {
                 Icons.group,
               ),
             ),
-            label: "Abouts"),
+            label: AppLocalizations.of(context)!.about),
         BottomNavigationBarItem(
           icon: IconButton(
             onPressed: () {
@@ -76,7 +77,7 @@ Widget BottomNavBar(context, index) {
               Icons.person,
             ),
           ),
-          label: "Profile",
+          label: AppLocalizations.of(context)!.profile,
         ),
       ],
     ),
@@ -85,7 +86,7 @@ Widget BottomNavBar(context, index) {
 
 // Drawer
 
-Widget CustomDrawer(context) {
+Widget CustomDrawer(context, String userName, String image_url) {
   return Drawer(
     elevation: 12.0,
     width: 280.0,
@@ -96,24 +97,21 @@ Widget CustomDrawer(context) {
           child: Column(
             children: [
               CircleAvatar(
-                radius: 40.0,
-                backgroundColor: HexColor('025CAF'),
-                child: const Text(
-                  'PK',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20.0,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: 0.03,
-                  ),
+                backgroundColor: Colors.white,
+                radius: 60,
+                child: CircleAvatar(
+                  radius: 58,
+                  backgroundImage: image_url.isNotEmpty
+                      ? NetworkImage(image_url)
+                      : AssetImage('assets/images/placeholder.jpg')
+                          as ImageProvider,
                 ),
               ),
               const SizedBox(
                 height: 4.0,
               ),
-              const Text(
-                'Praveen',
+              Text(
+                userName,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.black,
@@ -135,8 +133,8 @@ Widget CustomDrawer(context) {
               Icons.home,
               size: 21.0,
             ),
-            title: const Text(
-              'Home',
+            title: Text(
+              AppLocalizations.of(context)!.home,
               style: TextStyle(
                 color: Color(0xFF777777),
                 fontSize: 14,
@@ -158,10 +156,10 @@ Widget CustomDrawer(context) {
               Icons.search,
               size: 21.0,
             ),
-            title: const Padding(
+            title: Padding(
               padding: EdgeInsets.only(bottom: 4.0),
               child: Text(
-                'Seach',
+                AppLocalizations.of(context)!.search,
                 style: TextStyle(
                   color: Color(0xFF777777),
                   fontSize: 14,
@@ -184,10 +182,10 @@ Widget CustomDrawer(context) {
               Icons.museum_outlined,
               size: 21.0,
             ),
-            title: const Padding(
+            title: Padding(
               padding: EdgeInsets.only(bottom: 4.0),
               child: Text(
-                'Branches',
+                AppLocalizations.of(context)!.branches,
                 style: TextStyle(
                   color: Color(0xFF777777),
                   fontSize: 14,
@@ -205,10 +203,10 @@ Widget CustomDrawer(context) {
               Icons.class_outlined,
               size: 21.0,
             ),
-            title: const Padding(
+            title: Padding(
               padding: EdgeInsets.only(bottom: 4.0),
               child: Text(
-                'Courses',
+                AppLocalizations.of(context)!.courses,
                 style: TextStyle(
                   color: Color(0xFF777777),
                   fontSize: 14,
@@ -228,10 +226,10 @@ Widget CustomDrawer(context) {
               Icons.attach_money_rounded,
               size: 21.0,
             ),
-            title: const Padding(
+            title: Padding(
               padding: EdgeInsets.only(bottom: 4.0),
               child: Text(
-                'Donations',
+                AppLocalizations.of(context)!.donations,
                 style: TextStyle(
                   color: Color(0xFF777777),
                   fontSize: 14,
@@ -249,10 +247,10 @@ Widget CustomDrawer(context) {
               Icons.people,
               size: 21.0,
             ),
-            title: const Padding(
+            title: Padding(
               padding: EdgeInsets.only(bottom: 4.0),
               child: Text(
-                'Abouts',
+                AppLocalizations.of(context)!.about,
                 style: TextStyle(
                   color: Color(0xFF777777),
                   fontSize: 14,
@@ -270,10 +268,10 @@ Widget CustomDrawer(context) {
               Icons.person,
               size: 21.0,
             ),
-            title: const Padding(
+            title: Padding(
               padding: EdgeInsets.only(bottom: 4.0),
               child: Text(
-                'Profile',
+                AppLocalizations.of(context)!.profile,
                 style: TextStyle(
                   color: Color(0xFF777777),
                   fontSize: 14,
