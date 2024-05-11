@@ -14,7 +14,7 @@ TextEditingController _password = TextEditingController();
 
 Future<void> register(String name, String lastname, String email,
     String password, context) async {
-  final uri = Uri.parse('https://vgroups-api.pharma-sources.com/api/user/');
+  final uri = Uri.parse('?');
   try {
     final response = await http.post(
       uri,

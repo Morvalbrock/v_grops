@@ -39,18 +39,22 @@ Widget BottomNavBar(context, index) {
                   'home',
                 );
               },
-              icon: const Icon(
-                Icons.home,
+              icon: Image.asset(
+                'assets/icons/home.png',
+                color: Colors.white,
               ),
             ),
             label: AppLocalizations.of(context)!.home),
         BottomNavigationBarItem(
             icon: IconButton(
               onPressed: () {
-                Navigator.pushNamed(context, 'search');
+                Navigator.pushNamed(context, 'books');
               },
-              icon: const Icon(
-                Icons.search,
+              icon: Image.asset(
+                'assets/icons/book.png',
+                color: Colors.white,
+                width: 13,
+                height: 13,
               ),
             ),
             label: AppLocalizations.of(context)!.search),
@@ -59,8 +63,9 @@ Widget BottomNavBar(context, index) {
               onPressed: () {
                 Navigator.pushNamed(context, 'about');
               },
-              icon: const Icon(
-                Icons.group,
+              icon: Image.asset(
+                'assets/icons/about.png',
+                color: Colors.white,
               ),
             ),
             label: AppLocalizations.of(context)!.about),
@@ -73,8 +78,9 @@ Widget BottomNavBar(context, index) {
                 ),
               );
             },
-            icon: const Icon(
-              Icons.person,
+            icon: Image.asset(
+              'assets/icons/user.png',
+              color: Colors.white,
             ),
           ),
           label: AppLocalizations.of(context)!.profile,
@@ -129,9 +135,10 @@ Widget CustomDrawer(context, String userName, String image_url) {
         ),
         SizedBox(
           child: ListTile(
-            leading: const Icon(
-              Icons.home,
-              size: 21.0,
+            leading: Image.asset(
+              'assets/icons/home.png',
+              width: 18,
+              height: 18,
             ),
             title: Text(
               AppLocalizations.of(context)!.home,
@@ -152,9 +159,10 @@ Widget CustomDrawer(context, String userName, String image_url) {
         ),
         SizedBox(
           child: ListTile(
-            leading: const Icon(
-              Icons.search,
-              size: 21.0,
+            leading: Image.asset(
+              'assets/icons/book.png',
+              width: 18,
+              height: 18,
             ),
             title: Padding(
               padding: EdgeInsets.only(bottom: 4.0),
@@ -171,16 +179,17 @@ Widget CustomDrawer(context, String userName, String image_url) {
             onTap: () {
               Navigator.pushNamed(
                 context,
-                'search',
+                'Books',
               );
             },
           ),
         ),
         SizedBox(
           child: ListTile(
-            leading: const Icon(
-              Icons.museum_outlined,
-              size: 21.0,
+            leading: Image.asset(
+              'assets/icons/branch.png',
+              width: 18,
+              height: 18,
             ),
             title: Padding(
               padding: EdgeInsets.only(bottom: 4.0),
@@ -199,9 +208,10 @@ Widget CustomDrawer(context, String userName, String image_url) {
         ),
         SizedBox(
           child: ListTile(
-            leading: const Icon(
-              Icons.class_outlined,
-              size: 21.0,
+            leading: Image.asset(
+              'assets/icons/online-learning.png',
+              width: 18,
+              height: 18,
             ),
             title: Padding(
               padding: EdgeInsets.only(bottom: 4.0),
@@ -222,9 +232,10 @@ Widget CustomDrawer(context, String userName, String image_url) {
         ),
         SizedBox(
           child: ListTile(
-            leading: const Icon(
-              Icons.attach_money_rounded,
-              size: 21.0,
+            leading: Image.asset(
+              'assets/icons/helicopter.png',
+              width: 18,
+              height: 18,
             ),
             title: Padding(
               padding: EdgeInsets.only(bottom: 4.0),
@@ -238,14 +249,20 @@ Widget CustomDrawer(context, String userName, String image_url) {
                 ),
               ),
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(
+                context,
+                'donation',
+              );
+            },
           ),
         ),
         SizedBox(
           child: ListTile(
-            leading: const Icon(
-              Icons.people,
-              size: 21.0,
+            leading: Image.asset(
+              'assets/icons/about.png',
+              width: 18,
+              height: 18,
             ),
             title: Padding(
               padding: EdgeInsets.only(bottom: 4.0),
@@ -264,9 +281,10 @@ Widget CustomDrawer(context, String userName, String image_url) {
         ),
         SizedBox(
           child: ListTile(
-            leading: const Icon(
-              Icons.person,
-              size: 21.0,
+            leading: Image.asset(
+              'assets/icons/user.png',
+              width: 20,
+              height: 20,
             ),
             title: Padding(
               padding: EdgeInsets.only(bottom: 4.0),
@@ -311,9 +329,11 @@ Widget CustomDrawer(context, String userName, String image_url) {
         ),
         SizedBox(
           child: ListTile(
-            leading: const Icon(
-              Icons.logout_outlined,
-              size: 21.0,
+            leading: Image.asset(
+              'assets/icons/exit.png',
+              width: 18,
+              height: 18,
+              color: const Color.fromARGB(136, 0, 0, 0),
             ),
             title: const Padding(
               padding: EdgeInsets.only(bottom: 4.0),

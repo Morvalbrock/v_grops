@@ -3,6 +3,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:v_group/aboutspage.dart';
 import 'package:v_group/classes/language_constants.dart';
 import 'package:v_group/courses_page.dart';
+import 'package:v_group/donation_page.dart';
 import 'package:v_group/editing_page.dart';
 import 'package:v_group/home.dart';
 import 'package:v_group/imagepage.dart';
@@ -89,10 +90,11 @@ class _MyAppState extends State<MyApp> {
         'home': (context) => const Homepage(),
         'profile': (context) => const ProfilePage(),
         'about': (context) => const AboutsPage(),
-        'search': (context) => const SearchPage(),
+        'books': (context) => const SearchPage(),
         'image': (context) => const ImagePage(),
         'editing': (context) => const EditingPage(),
         'cources': (context) => const Cources_Page(),
+        'donation': (context) => const DonationPage(),
       },
     );
   }

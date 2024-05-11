@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:v_group/image_view.dart';
 
 class ImagePage extends StatefulWidget {
   const ImagePage({super.key});
@@ -14,13 +15,6 @@ class ImagePage extends StatefulWidget {
 class _ImagePageState extends State<ImagePage> {
   String authToken = '';
   List<String> imageUrls = [];
-
-  final List<String> photos = [
-    'https://m.media-amazon.com/images/I/71IeYNcBYdL._SX679_.jpg',
-    'https://upload.wikimedia.org/wikipedia/commons/e/e7/Everest_North_Face_toward_Base_Camp_Tibet_Luca_Galuzzi_2006.jpg',
-    'https://hairstyleonpoint.com/wp-content/uploads/2015/09/4ce06e936dcd5e5c5c3e44be9edbc8ff.jpg',
-    'https://bsmedia.business-standard.com/_media/bs/img/article/2020-12/11/full/1607656152-0479.jpg',
-  ];
 
   Future<void> fetchaboutimageInfo() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -81,12 +75,14 @@ class _ImagePageState extends State<ImagePage> {
           return Container(
             padding: const EdgeInsets.all(0.5),
             child: InkWell(
-              // onTap: () => Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (_) => PhotoViewPage(photos: photos, index: index),
-              //   ),
-              // ),
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ImageViewPage(
+                    imageUrl: imageUrls[index],
+                  ),
+                ),
+              ),
               child: Hero(
                 tag: imageUrls[index],
                 child: CachedNetworkImage(

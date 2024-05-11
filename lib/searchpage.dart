@@ -13,15 +13,17 @@ String authToken = '';
 
 class BookModel {
   final String image;
-  final String name;
+  final String name_english;
+  final String name_tamil;
   final String price;
 
-  BookModel(this.image, this.name, this.price);
+  BookModel(this.image, this.name_english, this.name_tamil, this.price);
 
   factory BookModel.fromJson(Map<String, dynamic> json) {
     return BookModel(
       json['image'],
-      json['name'],
+      json['name_english'],
+      json['name_tamil'],
       json['price'],
     );
   }
@@ -65,12 +67,42 @@ class _SearchPageState extends State<SearchPage> {
     if (pickedImage == null) {
       return;
     } else {
+      await uploadImageToApi(pickedImage.path);
       await fetchUserInfo();
     }
 
     // setState(() {
     //   _selectedImage = File(pickedImage.path);
     // });
+  }
+
+  Future<void> uploadImageToApi(String imagePath) async {
+    try {
+      var request = http.MultipartRequest(
+        'PATCH',
+        Uri.parse('https://vgroups-api.pharma-sources.com/api/user/'),
+        // headers: {
+        //   'Authorization': 'Bearer $authToken',
+        // },
+      );
+
+      //header writing another way
+      request.headers['Authorization'] = 'Bearer $authToken';
+      request.files.add(
+        await http.MultipartFile.fromPath('profile_pic', imagePath),
+      );
+
+      var response = await request.send();
+
+      if (response.statusCode == 200) {
+        print('Image uploaded successfully');
+        await fetchUserInfo();
+      } else {
+        print('Failed to upload image. Status code: ${response.statusCode}');
+      }
+    } catch (error) {
+      print('Error uploading image: $error');
+    }
   }
 
   Future<void> fetchUserInfo() async {
@@ -126,7 +158,7 @@ class _SearchPageState extends State<SearchPage> {
 
     if (response.statusCode == 200) {
       final List<dynamic> responseData = json.decode(response.body);
-      print(responseData);
+      print("Books Data $responseData");
       Future.delayed(const Duration(seconds: 2), () {
         setState(() {
           isLoading = true;
@@ -210,7 +242,6 @@ class _SearchPageState extends State<SearchPage> {
     fetchUserInfo();
     fetchBooks();
     print(allBooks);
-    // fetchUserInfo();
   }
 
   void updateList(String value) {
@@ -221,8 +252,8 @@ class _SearchPageState extends State<SearchPage> {
         displayBooks = List.from(allBooks);
       } else {
         displayBooks = allBooks
-            .where(
-                (book) => book.name.toLowerCase().contains(value.toLowerCase()))
+            .where((book) =>
+                book.name_english.toLowerCase().contains(value.toLowerCase()))
             .toList();
       }
     });
@@ -320,7 +351,8 @@ class _SearchPageState extends State<SearchPage> {
                                   ),
                                   SizedBox(width: 10),
                                   Expanded(
-                                    child: Text(displayBooks[index].name,
+                                    child: Text(
+                                        displayBooks[index].name_english,
                                         style: TextStyle(fontSize: 16)),
                                   ),
                                 ],
