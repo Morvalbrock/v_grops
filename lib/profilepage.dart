@@ -360,7 +360,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               child: DropdownButton<Language>(
                                 underline: const SizedBox(),
                                 hint: Text(
-                                  'Languages',
+                                  AppLocalizations.of(context)!.languages,
                                   style: TextStyle(
                                     color: Color(0xFF4D4D4D),
                                     fontSize: 15,
@@ -459,7 +459,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: SizedBox(
-                          width: MediaQuery.of(context).size.height * 0.18,
+                          // width: MediaQuery.of(context).size.height * 0.18,
                           height: MediaQuery.of(context).size.height * 0.05,
                           child: ElevatedButton(
                             onPressed: () {

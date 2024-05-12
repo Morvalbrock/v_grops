@@ -14,8 +14,8 @@ import 'package:v_group/videospage.dart';
 TextEditingController _contentController = TextEditingController();
 
 class AboutsPage extends StatefulWidget {
-  const AboutsPage({super.key});
-
+  const AboutsPage(this._locale, {super.key});
+  final Locale? _locale;
   @override
   State<AboutsPage> createState() => _AboutsPageState();
 }
@@ -24,10 +24,12 @@ class _AboutsPageState extends State<AboutsPage> {
   String authToken = '';
   late List<dynamic> content = [];
   var content_english;
+  var content_tamil;
   String firstname = '';
   String lastname = '';
   String email = '';
   String profile_url = '';
+  String _locale_value = '';
 
   // late String refreshToken = '';
   // late DateTime tokenExpiry = DateTime.now();
@@ -111,6 +113,7 @@ class _AboutsPageState extends State<AboutsPage> {
         setState(() {
           content = data;
           content_english = data.isNotEmpty ? data[0]['content_english'] : null;
+          content_tamil = data.isNotEmpty ? data[0]['content_tamil'] : null;
         });
         // });
       } else {
@@ -127,6 +130,9 @@ class _AboutsPageState extends State<AboutsPage> {
   void initState() {
     fetchaboutInfo();
     fetchUserInfo();
+    setState(() {
+      _locale_value = widget._locale.toString();
+    });
     super.initState();
   }
 
@@ -162,7 +168,9 @@ class _AboutsPageState extends State<AboutsPage> {
               child: SizedBox(
                 width: double.infinity,
                 child: Text(
-                  content_english.toString(),
+                  _locale_value == 'en'
+                      ? content_english.toString()
+                      : content_tamil.toString(),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0xFF4D4D4D),

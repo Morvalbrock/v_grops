@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
 import 'package:http/http.dart' as http;
@@ -145,9 +146,9 @@ class _Cources_PageState extends State<Cources_Page> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
                           child: Text(
-                            'அன்பர்களுக்கு ஒர் அரிய வாய்ப்பு.',
+                            AppLocalizations.of(context)!.courses_titile1,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Colors.black,
@@ -165,7 +166,7 @@ class _Cources_PageState extends State<Cources_Page> {
                           padding: const EdgeInsets.only(left: 20),
                           child: Container(
                             width: 350,
-                            height: 350,
+                            // height: 350,
                             decoration: ShapeDecoration(
                               color: Color(0xFFD9D9D9),
                               shape: RoundedRectangleBorder(
@@ -176,7 +177,8 @@ class _Cources_PageState extends State<Cources_Page> {
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                    '40 நாள் ஒரு இடத்தில் தங்கி குருவுடன் நேரடி பார்வையில்  \nபயிற்சிகள் கற்று அதை தினம் செய்ய இருக்கிறோம்.\nஇதில் குறைந்த நபர்கள் மட்டுமே கலந்து கொள்ள முடியும் \n40 நாள் நிகழ்வுகள் .\nஉபதேச பயிற்சி கற்று தினம் காலையும் மாலையும் இரண்டு நேரம் செய்ய இருக்கிறோம் அதுவும் ஐயாவின் நேரடி பார்வையில் 40 நாள் முடிவில் பயிற்சி சார்ந்த எந்த சந்தேகமும் இருக்காது மேலும் நெற்றிகண் விழிப்படைவது உறுத 5 வாழ்வியல் வகுப்புகள் சார்ந்த பாடங்கள் தினம்தோறும் தேவைக்கு ஏற்ப நடை பெறும்'),
+                                  AppLocalizations.of(context)!.courses_titile2,
+                                ),
                               ),
                             ),
                           ),
@@ -440,7 +442,7 @@ class _Cources_PageState extends State<Cources_Page> {
                           key: const Key('showMore'),
                           padding: const EdgeInsets.all(16.0),
                           child: ReadMoreText(
-                            'ஐயாவின் சிறந்த தலைப்புகள் (வீடியோ) காணொளிகள் இருக்கும் சிறு சிறு நிகழ்ச்சிகள் இருக்கும். ஐயாவுடன் கலந்துரையாடல்கள் இருக்கும் பொழுது போக்கு அம்சங்கள் இருக்கும் வெளி சூழலில் இருந்து ஒரு 40 நாள் உங்கள் பக்கம் திரும்பி பார்க்க ஒரு சந்தர்ப்பமாக அமையும் .இவை அனைத்தும் குருவின் அருகாமையில் இருந்து பழக இருக்கிறோம்.இது நாம் முழுமையாக சமுகத்துடன் முரண்படாமல் தெளிவாக வாழ்ந்து உண்மை சந்தித்து வெற்றி அடைய அனைத்து வகையிலும்  தயார் ஆகிவிடுவோம்.40 நாள் தங்கும் இடம் சைவ உணவுகள் வழங்கபடும்.அசைவ உணவுகள் தேவைபடுபவர்களுக்கு (conditions apply) . இதனால் தாங்கள் அடையும் கட்டாய பலன்கள் நெற்றிகண் திறப்பு சமுக அச்சத்தில் இருந்து விடுதலை காலத்தை மதித்து நமக்கு நாம் நேர்மையாக வாழ்தல் சமுகத்தில் எந்த முரண்பாடும் இன்றி அனைவருடன் பழகும் தன்மை எப்போதும் உற்சாக மனநிலையில் இருத்தல் நல் உடல் ஆரோக்கியம்',
+                            AppLocalizations.of(context)!.courses_titile3,
                             trimLines: 2,
                             preDataText: "AMANDA",
                             preDataTextStyle:

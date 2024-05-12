@@ -30,7 +30,9 @@ class BookModel {
 }
 
 class SearchPage extends StatefulWidget {
-  const SearchPage({Key? key}) : super(key: key);
+  const SearchPage(this._locale, {Key? key}) : super(key: key);
+
+  final Locale? _locale;
 
   @override
   State<SearchPage> createState() => _SearchPageState();
@@ -52,7 +54,7 @@ class _SearchPageState extends State<SearchPage> {
   String lastname = '';
   String email = '';
   String profile_url = '';
-
+  String _locale_value = '';
   // late String refreshToken = '';
   // late DateTime tokenExpiry = DateTime.now();
   late bool isLoading = false;
@@ -241,7 +243,12 @@ class _SearchPageState extends State<SearchPage> {
     super.initState();
     fetchUserInfo();
     fetchBooks();
+    // print(widget._locale);
     print(allBooks);
+
+    setState(() {
+      _locale_value = widget._locale.toString();
+    });
   }
 
   void updateList(String value) {
@@ -321,7 +328,7 @@ class _SearchPageState extends State<SearchPage> {
                     borderRadius: BorderRadius.circular(20.0),
                     borderSide: BorderSide.none,
                   ),
-                  hintText: 'Search',
+                  hintText: AppLocalizations.of(context)!.search,
                   suffixIcon: const Icon(Icons.search),
                 ),
               ),
@@ -352,7 +359,9 @@ class _SearchPageState extends State<SearchPage> {
                                   SizedBox(width: 10),
                                   Expanded(
                                     child: Text(
-                                        displayBooks[index].name_english,
+                                        _locale_value == 'en'
+                                            ? displayBooks[index].name_english
+                                            : displayBooks[index].name_tamil,
                                         style: TextStyle(fontSize: 16)),
                                   ),
                                 ],

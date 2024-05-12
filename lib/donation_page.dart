@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:lottie/lottie.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DonationPage extends StatefulWidget {
   const DonationPage({super.key});
@@ -30,7 +31,7 @@ class _DonationPageState extends State<DonationPage> {
           ),
         ),
         title: Text(
-          "Donation Page",
+          AppLocalizations.of(context)!.donation_page,
           style: TextStyle(color: Colors.white, fontSize: 18),
         ),
       ),
@@ -75,7 +76,8 @@ class _DonationPageState extends State<DonationPage> {
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                    'Overseas donation',
+                                    AppLocalizations.of(context)!
+                                        .overseas_donation,
                                     style: TextStyle(
                                       letterSpacing: 2,
                                       fontSize: 20,
@@ -152,7 +154,8 @@ class _DonationPageState extends State<DonationPage> {
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                    'India donation',
+                                    AppLocalizations.of(context)!
+                                        .india_donation,
                                     style: TextStyle(
                                       letterSpacing: 2,
                                       fontSize: 20,

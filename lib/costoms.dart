@@ -57,7 +57,7 @@ Widget BottomNavBar(context, index) {
                 height: 13,
               ),
             ),
-            label: AppLocalizations.of(context)!.search),
+            label: AppLocalizations.of(context)!.books),
         BottomNavigationBarItem(
             icon: IconButton(
               onPressed: () {
@@ -167,7 +167,7 @@ Widget CustomDrawer(context, String userName, String image_url) {
             title: Padding(
               padding: EdgeInsets.only(bottom: 4.0),
               child: Text(
-                AppLocalizations.of(context)!.search,
+                AppLocalizations.of(context)!.books,
                 style: TextStyle(
                   color: Color(0xFF777777),
                   fontSize: 14,
@@ -276,7 +276,12 @@ Widget CustomDrawer(context, String userName, String image_url) {
                 ),
               ),
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(
+                context,
+                'about',
+              );
+            },
           ),
         ),
         SizedBox(
@@ -298,7 +303,12 @@ Widget CustomDrawer(context, String userName, String image_url) {
                 ),
               ),
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(
+                context,
+                'profile',
+              );
+            },
           ),
         ),
         SizedBox(
@@ -335,10 +345,10 @@ Widget CustomDrawer(context, String userName, String image_url) {
               height: 18,
               color: const Color.fromARGB(136, 0, 0, 0),
             ),
-            title: const Padding(
+            title: Padding(
               padding: EdgeInsets.only(bottom: 4.0),
               child: Text(
-                'Log Out',
+                AppLocalizations.of(context)!.log_out,
                 style: TextStyle(
                   color: Color(0xFF777777),
                   fontSize: 12,

@@ -62,6 +62,7 @@ class _MyAppState extends State<MyApp> {
   setLocale(Locale locale) {
     setState(() {
       _locale = locale;
+      print(_locale);
     });
   }
 
@@ -89,8 +90,8 @@ class _MyAppState extends State<MyApp> {
         'register': (context) => const RegisterScreen(),
         'home': (context) => const Homepage(),
         'profile': (context) => const ProfilePage(),
-        'about': (context) => const AboutsPage(),
-        'books': (context) => const SearchPage(),
+        'about': (context) => AboutsPage(_locale!),
+        'books': (context) => SearchPage(_locale!),
         'image': (context) => const ImagePage(),
         'editing': (context) => const EditingPage(),
         'cources': (context) => const Cources_Page(),

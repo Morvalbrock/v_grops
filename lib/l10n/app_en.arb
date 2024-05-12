@@ -1,6 +1,6 @@
 {
     "home":"Home",
-    "search":"Search",
+    "books":"Books",
     "about":"Abouts"  ,
     "profile":"Profile",
     "email":"Email",
@@ -20,6 +20,16 @@
     "enquiry":"Enquiry",
     "donations":"Donations",
    "courses":"Courses",
-   "branches":"Branches"
-    
+   "branches":"Branches",
+   "home_content":"We welcome each and every one of you to the family of Vallarasu Party with love, great joy and enthusiasm. We are gathered here today not just as individuals, but as a united force driven by a shared vision for a better future, a stronger nation and a prosperous society!\nIn these challenging times, our political party stands as a beacon of hope and change. We believe in the power of unity, the strength of diversity and the potential of collective action. Together, we are committed to making a positive impact on our community, our state and our nation.",
+   "courses_titile1":"A rare opportunity for lovers." ,
+   "courses_titile2":"We are going to stay in one place for 40 days and do the trainings in direct view with the Guru.\nOnly few people can participate in this. There will be no doubts and 5 life lessons will be conducted daily as per requirement to ensure eye alertness.",
+   "courses_titile3":"There will be short programs with videos of the best topics (videos) of Sir. A 40-day retreat from an outside environment where there are discussions with the Lord and entertainment features will be an opportunity to look back at you. All these are to be experienced from the proximity of the Guru. This will allow us to live clearly without conflicting with Samuga and be prepared in every way to meet the truth and succeed. 40-day stay is Saiva. Meals will be provided for those who require non-vegetarian food (conditions apply). Compulsory benefits that you will get from this are: Opening of the forehead, freedom from fear of social life, respecting the time and living honestly to ourselves, getting along with everyone without any contradictions in social life, always being in a cheerful mood, good physical health.",
+   "donation_page" :"Donation Page",
+   "overseas_donation":"Overseas Donation",
+   "india_donation":"India Donation",
+   "search":"Search",
+   "log_out":"Log Out",
+   "languages":"Languages"
+
 }
