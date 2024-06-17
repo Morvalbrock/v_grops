@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:Sivayogi_The_Guru/costoms.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -7,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:v_group/costoms.dart';
 
 class SliderModel {
   final String image;

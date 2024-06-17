@@ -1,9 +1,9 @@
 import 'dart:convert';
+import 'package:Sivayogi_The_Guru/image_view.dart';
 import 'package:http/http.dart' as http;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:v_group/image_view.dart';
 
 class ImagePage extends StatefulWidget {
   const ImagePage({super.key});

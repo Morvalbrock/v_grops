@@ -1,13 +1,14 @@
 import 'dart:convert';
+import 'package:Sivayogi_The_Guru/costoms.dart';
 import 'package:fab_circular_menu_plus/fab_circular_menu_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:v_group/costoms.dart';
 
 String authToken = '';
 
@@ -159,8 +160,12 @@ class _SearchPageState extends State<SearchPage> {
     );
 
     if (response.statusCode == 200) {
-      final List<dynamic> responseData = json.decode(response.body);
-      print("Books Data $responseData");
+      // final List<dynamic> responseData = json.decode(response.body);
+      // print("Books Data $responseData");
+      final responseBody = utf8.decode(response.bodyBytes);
+      print("Books Data decode $responseBody");
+
+      final List<dynamic> responseData = json.decode(responseBody);
       Future.delayed(const Duration(seconds: 2), () {
         setState(() {
           isLoading = true;
@@ -359,10 +364,19 @@ class _SearchPageState extends State<SearchPage> {
                                   SizedBox(width: 10),
                                   Expanded(
                                     child: Text(
-                                        _locale_value == 'en'
-                                            ? displayBooks[index].name_english
-                                            : displayBooks[index].name_tamil,
-                                        style: TextStyle(fontSize: 16)),
+                                      _locale_value == 'en'
+                                          ? displayBooks[index].name_english
+                                          : displayBooks[index].name_tamil,
+                                      style: GoogleFonts.tiroTamil(
+                                        textStyle: const TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 16,
+                                          fontFamily: "Noto Sans Tamil",
+                                          fontWeight: FontWeight.w400,
+                                          height: 0,
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -398,7 +412,7 @@ class _SearchPageState extends State<SearchPage> {
                                         MaterialTapTargetSize.shrinkWrap,
                                   ).merge(
                                     ButtonStyle(
-                                      elevation: MaterialStateProperty.all(0),
+                                      elevation: WidgetStateProperty.all(0),
                                     ),
                                   ),
                                   child: Text(

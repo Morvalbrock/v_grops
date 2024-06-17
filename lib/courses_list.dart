@@ -1,5 +1,5 @@
+import 'package:Sivayogi_The_Guru/courses.dart';
 import 'package:flutter/material.dart';
-import 'package:v_group/courses.dart';
 
 // ignore: must_be_immutable
 class CourcesList extends StatelessWidget {

@@ -1,9 +1,9 @@
 import 'dart:convert';
 
+import 'package:Sivayogi_The_Guru/courses_list.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:http/http.dart' as http;
-import 'package:v_group/courses_list.dart';
 
 class CourcesModel {
   final String topic;

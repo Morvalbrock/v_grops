@@ -4,19 +4,20 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+        
         {
-            "name": "v_grops",
+            "name": "Sivayogi The Guru",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "v_grops (profile mode)",
+            "name": "Sivayogi The Guru (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "v_grops (release mode)",
+            "name": "Sivayogi The Guru (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"

@@ -1,16 +1,16 @@
+import 'package:Sivayogi_The_Guru/aboutspage.dart';
+import 'package:Sivayogi_The_Guru/classes/language_constants.dart';
+import 'package:Sivayogi_The_Guru/courses_page.dart';
+import 'package:Sivayogi_The_Guru/donation_page.dart';
+import 'package:Sivayogi_The_Guru/editing_page.dart';
+import 'package:Sivayogi_The_Guru/home.dart';
+import 'package:Sivayogi_The_Guru/imagepage.dart';
+import 'package:Sivayogi_The_Guru/loginscreen.dart';
+import 'package:Sivayogi_The_Guru/profilepage.dart';
+import 'package:Sivayogi_The_Guru/registerpage.dart';
+import 'package:Sivayogi_The_Guru/searchpage.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:v_group/aboutspage.dart';
-import 'package:v_group/classes/language_constants.dart';
-import 'package:v_group/courses_page.dart';
-import 'package:v_group/donation_page.dart';
-import 'package:v_group/editing_page.dart';
-import 'package:v_group/home.dart';
-import 'package:v_group/imagepage.dart';
-import 'package:v_group/loginscreen.dart';
-import 'package:v_group/profilepage.dart';
-import 'package:v_group/registerpage.dart';
-import 'package:v_group/searchpage.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -19,29 +19,30 @@ var KColorScheme = ColorScheme.fromSeed(
 );
 void main() {
   runApp(
-      // MaterialApp(
-      //   debugShowCheckedModeBanner: false,
+    // MaterialApp(
+    //   debugShowCheckedModeBanner: false,
 
-      //   localizationsDelegates: AppLocalizations.localizationsDelegates,
-      //   supportedLocales: AppLocalizations.supportedLocales,
+    //   localizationsDelegates: AppLocalizations.localizationsDelegates,
+    //   supportedLocales: AppLocalizations.supportedLocales,
 
-      //   // locale: Locale('ta'),
-      //   initialRoute: '/',
-      //   routes: {
-      //     '/': (context) => const LoginScreen(),
-      //     // 'login': (context) => const LoginScreen(),
-      //     'register': (context) => const RegisterScreen(),
-      //     'home': (context) => const Homepage(),
-      //     'profile': (context) => const ProfilePage(),
-      //     'about': (context) => const AboutsPage(),
-      //     'search': (context) => const SearchPage(),
-      //     'image': (context) => const ImagePage(),
-      //     'editing': (context) => const EditingPage(),
-      //     'cources': (context) => const Cources_Page(),
-      //   },
+    //   // locale: Locale('ta'),
+    //   initialRoute: '/',
+    //   routes: {
+    //     '/': (context) => const LoginScreen(),
+    //     // 'login': (context) => const LoginScreen(),
+    //     'register': (context) => const RegisterScreen(),
+    //     'home': (context) => const Homepage(),
+    //     'profile': (context) => const ProfilePage(),
+    //     'about': (context) => const AboutsPage(),
+    //     'search': (context) => const SearchPage(),
+    //     'image': (context) => const ImagePage(),
+    //     'editing': (context) => const EditingPage(),
+    //     'cources': (context) => const Cources_Page(),
+    //   },
 
-      // ),
-      MyApp());
+    // ),
+    MyApp(),
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -91,10 +92,10 @@ class _MyAppState extends State<MyApp> {
         'home': (context) => const Homepage(),
         'profile': (context) => const ProfilePage(),
         'about': (context) => AboutsPage(_locale!),
-        'books': (context) => SearchPage(_locale!),
+        'Books': (context) => SearchPage(_locale!),
         'image': (context) => const ImagePage(),
         'editing': (context) => const EditingPage(),
-        'cources': (context) => const Cources_Page(),
+        'cources': (context) => Cources_Page(_locale!),
         'donation': (context) => const DonationPage(),
       },
     );

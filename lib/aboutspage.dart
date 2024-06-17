@@ -1,15 +1,14 @@
 import 'dart:convert';
+import 'package:Sivayogi_The_Guru/costoms.dart';
+import 'package:Sivayogi_The_Guru/imagepage.dart';
+import 'package:Sivayogi_The_Guru/videospage.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:v_group/bookeditingpage.dart';
-import 'package:v_group/costoms.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:v_group/imagepage.dart';
+
 import 'package:http/http.dart' as http;
-import 'package:v_group/videospage.dart';
 
 TextEditingController _contentController = TextEditingController();
 
@@ -106,7 +105,13 @@ class _AboutsPageState extends State<AboutsPage> {
 
       if (response.statusCode == 200) {
         // Parse the response body
-        List<dynamic> data = json.decode(response.body);
+        // List<dynamic> data = json.decode(response.body);
+        // print('Parsed Data about data: $data');
+
+        final responseBody = utf8.decode(response.bodyBytes);
+        print("Books Data decode $responseBody");
+
+        List<dynamic> data = json.decode(responseBody);
         print('Parsed Data about data: $data');
 
         // Future.delayed(const Duration(seconds: 2), () {

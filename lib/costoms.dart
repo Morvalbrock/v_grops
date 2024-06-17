@@ -1,8 +1,8 @@
+import 'package:Sivayogi_The_Guru/profilepage.dart';
 import 'package:fab_circular_menu_plus/fab_circular_menu_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:v_group/profilepage.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Widget BottomNavBar(context, index) {
@@ -48,7 +48,7 @@ Widget BottomNavBar(context, index) {
         BottomNavigationBarItem(
             icon: IconButton(
               onPressed: () {
-                Navigator.pushNamed(context, 'books');
+                Navigator.pushNamed(context, 'Books');
               },
               icon: Image.asset(
                 'assets/icons/book.png',
@@ -311,32 +311,32 @@ Widget CustomDrawer(context, String userName, String image_url) {
             },
           ),
         ),
-        SizedBox(
-          child: ListTile(
-            leading: const Icon(
-              Icons.edit,
-              size: 21.0,
-            ),
-            title: const Padding(
-              padding: EdgeInsets.only(bottom: 4.0),
-              child: Text(
-                'Edit Content',
-                style: TextStyle(
-                  color: Color(0xFF777777),
-                  fontSize: 14,
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ),
-            onTap: () {
-              Navigator.pushNamed(
-                context,
-                'editing',
-              );
-            },
-          ),
-        ),
+        // SizedBox(
+        //   child: ListTile(
+        //     leading: const Icon(
+        //       Icons.edit,
+        //       size: 21.0,
+        //     ),
+        //     title: const Padding(
+        //       padding: EdgeInsets.only(bottom: 4.0),
+        //       child: Text(
+        //         'Edit Content',
+        //         style: TextStyle(
+        //           color: Color(0xFF777777),
+        //           fontSize: 14,
+        //           fontFamily: 'Poppins',
+        //           fontWeight: FontWeight.w400,
+        //         ),
+        //       ),
+        //     ),
+        //     onTap: () {
+        //       Navigator.pushNamed(
+        //         context,
+        //         'editing',
+        //       );
+        //     },
+        //   ),
+        // ),
         SizedBox(
           child: ListTile(
             leading: Image.asset(
@@ -357,7 +357,10 @@ Widget CustomDrawer(context, String userName, String image_url) {
                 ),
               ),
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/', (Route<dynamic> route) => false);
+            },
           ),
         ),
       ],
@@ -393,10 +396,10 @@ Widget TabButton(context, gobalkey) {
           },
           shape: CircleBorder(),
           padding: const EdgeInsets.all(24.0),
-          child: Icon(
-            Icons.video_camera_front_rounded,
-            color: Colors.black,
-            size: 25,
+          child: Image.asset(
+            'assets/icons/youtube.png',
+            width: 25,
+            height: 25,
           ),
         ),
         RawMaterialButton(
@@ -406,10 +409,10 @@ Widget TabButton(context, gobalkey) {
           },
           shape: CircleBorder(),
           padding: const EdgeInsets.all(24.0),
-          child: Icon(
-            Icons.facebook,
-            color: Colors.black,
-            size: 25,
+          child: Image.asset(
+            'assets/icons/facebook.png',
+            width: 25,
+            height: 25,
           ),
         ),
         RawMaterialButton(
@@ -420,10 +423,10 @@ Widget TabButton(context, gobalkey) {
           },
           shape: CircleBorder(),
           padding: const EdgeInsets.all(24.0),
-          child: Icon(
-            Icons.wechat_outlined,
-            color: Colors.black,
-            size: 25.0,
+          child: Image.asset(
+            'assets/icons/world-wide-web.png',
+            width: 25,
+            height: 25,
           ),
         ),
         RawMaterialButton(
@@ -434,10 +437,10 @@ Widget TabButton(context, gobalkey) {
           },
           shape: CircleBorder(),
           padding: const EdgeInsets.all(24.0),
-          child: Icon(
-            Icons.web,
-            color: Colors.black,
-            size: 25,
+          child: Image.asset(
+            'assets/icons/instagram.png',
+            width: 25,
+            height: 25,
           ),
         )
       ],

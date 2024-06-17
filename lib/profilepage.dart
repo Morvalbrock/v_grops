@@ -1,5 +1,9 @@
 import 'dart:convert';
 // import 'dart:io';
+import 'package:Sivayogi_The_Guru/classes/language.dart';
+import 'package:Sivayogi_The_Guru/classes/language_constants.dart';
+import 'package:Sivayogi_The_Guru/costoms.dart';
+import 'package:Sivayogi_The_Guru/main.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -7,10 +11,6 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-import 'package:v_group/classes/language.dart';
-import 'package:v_group/classes/language_constants.dart';
-import 'package:v_group/costoms.dart';
-import 'package:v_group/main.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -463,7 +463,8 @@ class _ProfilePageState extends State<ProfilePage> {
                           height: MediaQuery.of(context).size.height * 0.05,
                           child: ElevatedButton(
                             onPressed: () {
-                              Navigator.of(context).pushNamed("/");
+                              Navigator.of(context).pushNamedAndRemoveUntil(
+                                  '/', (Route<dynamic> route) => false);
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.transparent,

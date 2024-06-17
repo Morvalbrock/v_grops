@@ -1,11 +1,10 @@
 import 'dart:convert';
 
+import 'package:Sivayogi_The_Guru/loginscreen.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hexcolor/hexcolor.dart';
-
-import 'package:v_group/loginscreen.dart';
 
 TextEditingController _firstname = TextEditingController();
 TextEditingController _lastname = TextEditingController();
@@ -14,7 +13,7 @@ TextEditingController _password = TextEditingController();
 
 Future<void> register(String name, String lastname, String email,
     String password, context) async {
-  final uri = Uri.parse('?');
+  final uri = Uri.parse('https://vgroups-api.pharma-sources.com/api/user/');
   try {
     final response = await http.post(
       uri,

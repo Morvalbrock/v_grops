@@ -1,12 +1,12 @@
 import 'dart:convert';
+import 'package:Sivayogi_The_Guru/home.dart';
+import 'package:Sivayogi_The_Guru/registerpage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:v_group/home.dart';
-import 'package:v_group/registerpage.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
