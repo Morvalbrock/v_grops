@@ -163,7 +163,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.symmetric(
                             horizontal: 16.0, vertical: 8.0),
-                        hintText: 'Enter your name here',
+                        hintText: 'Enter your password here',
 
                         hintStyle: TextStyle(
                           color: HexColor('4E4E4E'),

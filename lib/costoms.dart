@@ -390,7 +390,7 @@ Widget TabButton(context, gobalkey) {
         RawMaterialButton(
           onPressed: () {
             final Uri _urlyoutube =
-                Uri.parse('https://www.youtube.com/@vallarasutv/videos');
+                Uri.parse('https://www.youtube.com/@sivayogi');
 
             _launchUrl(_urlyoutube);
           },
@@ -404,7 +404,8 @@ Widget TabButton(context, gobalkey) {
         ),
         RawMaterialButton(
           onPressed: () {
-            final Uri _urlfacbook = Uri.parse('https://www.facebook.com/');
+            final Uri _urlfacbook = Uri.parse(
+                'https://www.facebook.com/sivayogisivakumar?mibextid=JRoKGi&rdid=hCVF9m2Pz8dDoMCW&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fff5XhJHpDMWLif2n%2F%3Fmibextid%3DJRoKGi');
             _launchUrl(_urlfacbook);
           },
           shape: CircleBorder(),
@@ -417,7 +418,7 @@ Widget TabButton(context, gobalkey) {
         ),
         RawMaterialButton(
           onPressed: () {
-            final Uri _url = Uri.parse('https://vallarasuparty.com/');
+            final Uri _url = Uri.parse('http://www.yogakudil.org/');
 
             _launchUrl(_url);
           },
@@ -431,8 +432,8 @@ Widget TabButton(context, gobalkey) {
         ),
         RawMaterialButton(
           onPressed: () {
-            final Uri _urlinstagram =
-                Uri.parse('https://www.instagram.com/accounts/login/?hl=en');
+            final Uri _urlinstagram = Uri.parse(
+                'https://www.instagram.com/sivayogi_?igsh=OHN1ZXkzb3J1ano=');
             _launchUrl(_urlinstagram);
           },
           shape: CircleBorder(),

@@ -126,7 +126,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.symmetric(
                             horizontal: 16.0, vertical: 8.0),
-                        hintText: 'Enter your name here',
+                        hintText: 'Enter your first name here',
 
                         hintStyle: TextStyle(
                           color: HexColor('4E4E4E'),
@@ -176,7 +176,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.symmetric(
                             horizontal: 16.0, vertical: 8.0),
-                        hintText: 'Enter confirm password here',
+                        hintText: 'Enter your last name here',
 
                         hintStyle: TextStyle(
                           color: HexColor('4E4E4E'),
